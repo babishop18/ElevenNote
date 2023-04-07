@@ -1,4 +1,5 @@
 using ElevenNote.Data;
+using ElevenNote.Services.User;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ElevenNoteDbContext>( options => options.UseSqlServer(builder.Configuration.GetConnectionString("CSElevenNote")));
+builder.Services.AddScoped<ElevenNote.Services.User.IUserService, UserService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
